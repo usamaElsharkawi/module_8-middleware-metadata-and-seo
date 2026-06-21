@@ -4,23 +4,6 @@
 
 ---
 
-## 📚 Table of Contents
-
-- [Module 8: Middleware, Metadata \& SEO](#module-8-middleware-metadata--seo)
-  - [📚 Table of Contents](#-table-of-contents)
-  - [🧠 Concepts Covered](#-concepts-covered)
-    - [1. Turbopack Error: Race Conditions \& Shared Mutable State](#1-turbopack-error-race-conditions--shared-mutable-state)
-    - [2. Layout Composition: The `{children}` Pattern](#2-layout-composition-the-children-pattern)
-    - [3. Metadata: Data About Data](#3-metadata-data-about-data)
-    - [4. The `<title>` Tag: Heart of SEO](#4-the-title-tag-heart-of-seo)
-    - [5. Title Templates: `default` \& `template`](#5-title-templates-default--template)
-    - [6. Static vs Dynamic Metadata](#6-static-vs-dynamic-metadata)
-    - [7. Open Graph Images](#7-open-graph-images)
-    - [8. Perceptual Control: Frontend as Attention Architecture](#8-perceptual-control-frontend-as-attention-architecture)
-
-
----
-
 ## 🧠 Concepts Covered
 
 <details>

@@ -597,3 +597,223 @@ If any step fails, the user moves to the next result.
 4. **On mobile**, only 2-3 results are visible above the fold — competition for that first screen is intense
 </details>
 </details>
+
+<details>
+<summary><strong>Sprint 2: On-Page SEO Architecture</strong></summary>
+
+<details>
+<summary><strong>Point 1: Content Hierarchy — H1-H6, Semantic HTML, and Information Architecture</strong></summary>
+
+Search engines need to understand the **structure** of your content. Without a clear hierarchy, a page is a wall of text with no way to distinguish the main topic from subtopics.
+
+##### The Solution: Semantic HTML Headings
+
+```html
+<h1>Complete Guide to Sourdough Bread</h1>
+  <h2>What is Sourdough?</h2>
+    <h3>The Science of Fermentation</h3>
+  <h2>Tools You'll Need</h2>
+  <h2>Step-by-Step Baking Process</h2>
+```
+
+##### The Rules
+- **One H1 per page** — the unique title of the page
+- **Don't skip levels** (H1 → H3) — creates gaps in hierarchy
+- **Headings should be descriptive**, not generic ("Section 1")
+- **Use headings for structure, not styling** — use CSS for visual size
+
+##### Semantic HTML Elements
+
+`<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<aside>`, `<footer>` — these tell Google the **role** of each section, not just its content. `<main>` signals primary content. `<article>` signals self-contained content.
+
+##### The Pyramid Model
+
+```
+                    ┌─────┐
+                    │ H1  │  ← One main topic
+                   ┌┴─────┴┐
+                   │  H2   │  ← 3-5 major sections
+                  ┌┴───────┴┐
+                  │   H3    │  ← Sub-topics
+```
+
+**Key insight:** Before writing code, outline your page using only headings. If you can't create a clean hierarchy, your content structure is broken.
+
+</details>
+
+<details>
+<summary><strong>Point 2: URL Structure — Readability, Keywords, Parameters, Canonicalization</strong></summary>
+
+The URL is the **second thing users see** in search results and a signal Google uses to understand content.
+
+##### Good vs Bad URLs
+
+| Quality | Good URL | Bad URL |
+|---|---|---|
+| Readable | `/blog/sourdough-bread-recipe` | `/p?id=392&ref=spam` |
+| Keyword-rich | Contains relevant words | Random characters |
+| Hierarchical | Shows site structure | Flat, no structure |
+| Static | No query parameters | Dynamic parameters |
+
+##### Rules
+- **Use hyphens, not underscores** — Google treats hyphens as word separators
+- **Keep it short but descriptive** — `/sourdough-bread-recipe` not `/a-complete-guide-to-making-sourdough-bread-from-scratch`
+- **Use lowercase** — URLs are case-sensitive
+- **Remove stop words** — "a", "an", "the", "and", "of" add no value
+- **Reflect hierarchy** — `/blog/sourdough/basic-recipe`
+
+##### Canonicalization: Solving Duplicate Content
+
+The same content accessible via multiple URLs dilutes ranking signals. The `<link rel="canonical">` tag tells Google which URL is the "official" version:
+
+```html
+<link rel="canonical" href="https://site.com/page" />
+```
+
+**Key insight:** Every page should have a self-referencing canonical tag to prevent issues from tracking parameters, protocol variations, or trailing slashes.
+
+</details>
+
+<details>
+<summary><strong>Point 3: Internal Linking — Link Equity, Silo Structure, Navigation</strong></summary>
+
+Internal links distribute **link equity** (authority) from high-authority pages to low-authority pages. You have complete control over this — unlike external backlinks.
+
+##### Link Equity Flow
+
+```
+Homepage (highest authority)
+  ├── About (gets equity from homepage)
+  ├── Blog (gets equity from homepage)
+  │    ├── Post 1 (gets equity from blog)
+  │    └── Post 2 (gets equity from blog)
+```
+
+- Every link passes equity to the linked page
+- Pages with more inbound internal links accumulate more equity
+- Orphan pages (no internal links) receive zero equity — invisible to crawlers
+- More outbound links = less equity per link (equity is divided)
+
+##### Silo Structure: Thematic Grouping
+
+A **silo** is a group of pages about the same topic, all linking to each other:
+
+```
+/sourdough/                    ← Pillar page
+/sourdough/starter-guide       ← Links to/from pillar
+/sourdough/baking-tips         ← Links to/from pillar
+/sourdough/recipes             ← Links to/from pillar
+```
+
+Silos signal **topical authority** — your site is a comprehensive resource, not a random page.
+
+##### Navigation Patterns
+
+| Pattern | SEO Impact |
+|---|---|
+| **Breadcrumbs** | Shows hierarchy; Google uses for search result breadcrumbs |
+| **Related posts** | Distributes equity within silos; increases time on site |
+| **Footer links** | Low equity; useful for important pages |
+| **Sidebar links** | Medium equity; useful for navigation |
+
+**Key insight:** Your most important pages should have the most internal links pointing to them. Don't bury your best content behind a single navigation click.
+
+</details>
+
+<details>
+<summary><strong>Point 4: Image Optimization — Alt Text, File Names, Compression, Lazy Loading</strong></summary>
+
+Images make up ~50% of a typical page's weight and appear in Google Image Search — a massive traffic source.
+
+##### The Four Levers
+
+**1. Alt Text**
+```html
+<img src="sourdough-bread.jpg" alt="Freshly baked sourdough bread on a wooden cutting board" />
+```
+Serves accessibility, SEO, and fallback. Be descriptive (5-10 words), include keywords naturally, don't start with "image of." Decorative images use `alt=""`.
+
+**2. File Names**
+```
+❌ IMG_4923.JPG
+✅ sourdough-bread-recipe.jpg
+```
+Google reads the file name as a content signal.
+
+**3. Compression**
+| Format | Best for | Size savings |
+|---|---|---|
+| WebP | Photos & graphics | 25-35% smaller than JPEG |
+| JPEG | Photos | Good quality-to-size |
+| PNG | Graphics with transparency | Larger files |
+| AVIF | Next-gen | Even smaller than WebP |
+
+Target <100KB per image.
+
+**4. Lazy Loading**
+```html
+<img src="sourdough-bread.jpg" loading="lazy" alt="..." />
+```
+Only load images when the user scrolls near them. Above-the-fold images load immediately; below-the-fold images lazy load.
+
+**Key insight:** Image optimization is a performance-SEO multiplier. Faster pages rank higher. Smaller images load faster. Descriptive alt text helps you rank in image search.
+
+</details>
+
+<details>
+<summary><strong>Point 5: Structured Data / Schema.org — JSON-LD, Rich Snippets, Knowledge Graph</strong></summary>
+
+Google can read your content but doesn't inherently know what *type* of thing your page represents. Structured data tells Google explicitly.
+
+##### What It Looks Like (JSON-LD)
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Classic Sourdough Bread",
+  "author": { "@type": "Person", "name": "Jane Baker" },
+  "cookTime": "PT45M",
+  "recipeYield": "1 loaf",
+  "recipeIngredient": ["500g bread flour", "350g water"]
+}
+```
+
+##### Rich Results by Schema Type
+
+| Schema Type | Rich Result Feature |
+|---|---|
+| `Recipe` | Star ratings, cook time, calories |
+| `Product` | Price, availability, reviews |
+| `Event` | Date, location, ticket info |
+| `FAQPage` | Expandable Q&A accordion |
+| `Article` | Author, publish date |
+| `LocalBusiness` | Address, phone, hours |
+| `JobPosting` | Salary, location, employer |
+
+##### JSON-LD Format
+
+Google's preferred format. A `<script>` tag in your HTML:
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Bake Sourdough Bread",
+  "datePublished": "2026-01-15"
+}
+</script>
+```
+
+##### The Knowledge Graph
+
+When Google trusts your structured data, your entity may appear in the Knowledge Graph — the information panel on the right side of search results. This is the holy grail of brand recognition in search.
+
+**Key insights:**
+- Start with the most relevant schema type for your content
+- Use Google's Rich Results Test to validate
+- Structured data is not a direct ranking factor, but rich results increase CTR by 20-30%
+- Keep it accurate — misleading schema can trigger penalties
+</details>
+</details>

@@ -17,8 +17,7 @@
     - [6. Static vs Dynamic Metadata](#6-static-vs-dynamic-metadata)
     - [7. Open Graph Images](#7-open-graph-images)
     - [8. Perceptual Control: Frontend as Attention Architecture](#8-perceptual-control-frontend-as-attention-architecture)
-  - [🗂 Project Structure](#-project-structure)
-  - [🚀 SEO Mastery Plan](#-seo-mastery-plan)
+
 
 ---
 
